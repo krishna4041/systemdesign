@@ -1,0 +1,44 @@
+
+
+Video Link: https://www.youtube.com/watch?v=OyTEd9h_CVQ&list=PLkQkbY7JNJuAhePp7E_WSpfFqjQp6RniV&index=1
+
+Topics
+
+D -> Distributed System
+
+D Datastore
+D Compiting
+D FileSystem
+D Messaging
+D Application
+D Ledgers
+
+
+
+Def: Distributed System
+
+A Group of computers or group of devices (Normal CPU'S) which work to accomplish a common goal or task.
+
+
+a) Horizontal scaling
+
+Increasing the no.of servers as per need to accomodate no.of requests per second
+
+Buy a server which is same configuration of existing one and add it to the cluster of servers
+
+b) Vertical scaling
+
+Increasing the CPU power i.e ram and memmory to accomodate no.of requests per second
+
+say we have a server which hadles 10K requets per second  with 8gb ram and 256gb harddisk, in case if the requests goes up to 100K per second we increase the cpu power to like 128gb ram
+and 1TB hard disk
+
+
+Vertical scaling is costly,
+In Horizontal scaling if we have 10 servers which are handling 10M requests per second, assume in the following months if the requests go down to 100K we can remove few servers
+from the cluster (sell them or put a side).
+
+
+
+
+
