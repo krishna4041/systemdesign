@@ -1,0 +1,163 @@
+
+Dsitributed datastores
+
+Two types of databases RDBMS and no-sql
+
+RDBMS - Relational database management systems
+Ex: MySql
+
+No-Sql Ex: MongoDB
+
+Assusme you have a single server (both app and DB), in case of low requests this systems will be capable of handling requests
+
+In case the reuqests go up scaling is necessary (DB's writes and read will be slower)
+
+Below are the ways to scale the DB
+
+1) Master Slave
+
+In this configuration we will be having
+
+1 Master DB and 2 Slaves
+
+All the writes will be routed to Master DB and reads to slaves
+whenever a write happens to master DB, it will asynchronously synch with its slaves
+
+Assume the user updated some information and tries to access it immediately, if he try to view it immediately, he might not gets his updated information, since master to slave synch is asynch
+
+which results in inconsistency
+
+The above system in not a consistent DB
+
+2) Sharding
+
+Here we will be having 3 instances of a DB all share similar responsibilites
+
+Before sharing we need to derive a shard key, This key determines to which instance the db request goes.
+For example lets take "name" as example shard key.
+
+we have 3 instance where in
+
+1st instance accepts name starting from (A-I)
+2nd instance (J-S)
+3rd instance (T-Z)
+
+Assume a case where we have more request which are going to A-I instance, in a typical world most of the names are in A to I bucket
+
+A-I instance will be having heavier load when compare to others, in order to solve this we need to futher dive A to I to say (A to F and F to I), (we need to take dump of this instance and create shards and pump it back)
+
+The process is kind of tideios process and requires continously monitoring to look up the requests traffic.
+
+There will also be some cases where DB call between happes in case of joins which is costly.
+
+
+CAP Theorem:
+
+C - Consistency
+
+Assume you have two instances of DB and they sysnc in async manner in case of any updates, reads/writes might happen from any instance at any point of time
+Assume you update a value and the request went to instance 1 and the if you tired to read it immediately if the read requests goes to instace 2 and gives you not updated value, this has no consistency
+
+A - Availability
+Assume we have two instances, even if one of the instane goes down, our request should be still served by other one
+
+P - Partitioning
+Assume we have two instances, and they are talking to each other, assume if the connection between those two instances goes down, our request should be still served
+
+In reality we cant have have all the 3 (C,A,P) in our data store, we can have max any of two.
+
+Mysql by default its CA
+
+Instagram has A,P DB
+
+
+Most of the nosql systems are eventual consistency (they get consitency in few secs, ex: cassandra)
+
+RDBMS
+support ACID properties
+
+A - Availibity
+C - Consistency
+I - Isolation
+D - Durability
+
+Also Called as BASE properties
+B Basically
+A Avaialbe
+S soft state
+E Eventual consistency
+
+
+Distributed data stores part 2
+
+Lets try to understand how distributed data stores works
+
+lets say we have 5 instances, lets call them nodes (no master slave arch, every node is treated equally)
+
+each node has 2 responsibilites
+
+1) Saving some data
+2) keeping data back of some other nodes (why ? in case a node goes, we will be having back up of it in other nodes)
+
+The logic of saving a part of data in different nodes as back up is called as data partioning
+
+each node can be located across continents depending on the use case
+
+Responsibility:
+
+Assume we have
+
+node 1
+node 2
+node 3
+node 4
+node 5
+
+Assume I want to save some numbers (like 1, 2, 3) in node 1, in this case node 1 hold the numbers and node 2 hold (1) as backup and node 3 hold (2, 3) as back up and node 4 hodl (2) as back up and node 5 holds (3) as back
+
+In case of node 1 down, we can still get the data from other nodes
+
+Due to this distributed data store in resilient, fault tolerance and has H.A
+
+Rebalancing:
+
+1) how each node know what part of the data it should store and what part of data it should have as back up ?
+This is answered by consistent hashing
+
+
+All of the nodes has a insider ring, cosistent hashsing does is every component has its own parittion key, it is repsonsible for where this data goes.
+
+which means
+
+node 1 has data btw (data 1 to node 1000)
+node 2 has data btw (data 1001 to node 2000)
+node 3 has data btw (data 2001 to node 3000)
+node 4 has data btw (data 30001 to node 4000)
+node 5 has data btw (data 4000+ )
+
+The above ranges are derived from a consistent hashing function, and value is partition key
+
+Now, each node knows its responsibility
+
+Lets try to insert a record (every record has a partion key)into system, we need to
+
+
+
+ex: when we shard the data a-i go to DB1  i-z go to DB1
+
+what is does is
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
