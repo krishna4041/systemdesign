@@ -1,0 +1,33 @@
+
+Monoliths:
+
+A complete business unit put into a single server has a single DB, All the clients will be talking to this.
+We can scale it horizontally  (Add multiple servers based on need)
+
+pros:
+Good for small business and small teams
+Deployments are easy, cause they are single servers
+Response times are faster, cause no calls to other services, all the code is in the same box
+
+cons:
+if there is a new member in team, they need to have proper context before deveoping.
+if any change made, Deployments will be frequent, cause its single system, and tightlyecoupled
+if there is mistake and server crashes whole server will be down, and client will be having a downtime
+
+
+
+
+Microservices:
+
+Entire Business unit split into various servers, DB's and these servers communicate with each other if needed
+
+Clients are connected to gateway, and it will talk to microservices internally
+
+pros:
+Easy to scale
+when we have a new member in team, we can assign him to particular microservice and less context is required for development
+perfectly decoupled and development can be made paralley
+Assume if a particular microservice getting more requests we can scale that microservice easily
+
+
+Justify with above points why you choose Monolits or Microservices

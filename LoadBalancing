@@ -1,0 +1,27 @@
+
+
+Lets say we have n servers, and we need to balance load (incoming requests) on all the servers evenly, this is called laod balancing
+
+
+Why Load Balancer?
+
+1) Using a LB will make the application avaialbe all the time (H.A) and prevents request load on a single server
+2) Api response times are faster, since there is less load on each server
+3) it provides the system to remove the servers which make our system fault tolerance
+
+How a LB identifies fault tolerance in a server ?
+
+1) Health Checks
+    a) Active health checks: LB sends request to the server and marks it unhealty if it does not provide any response backa and do not send furthur requests to it
+    b) Passive health checks: LB monitors if the response from the server has any errors, if so, LB marks it as unhealthy and will not send furthur requests to it.
+
+2) Monitor CPU Utilization:
+    if a server is running out of CPU, memory or diskspace. it is more likely to go down, LB detects these kind of activity and marks it as unhealthy
+
+3) Heartbeat Signals:
+    `Servers can send a heartbeat signal to LB to indicate they are alive, if LB does not receive a signal, it gonna mark it as unhealthy
+
+
+
+Load Balancing Algorithms:
+

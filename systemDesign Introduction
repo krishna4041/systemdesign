@@ -26,6 +26,11 @@ Increasing the no.of servers as per need to accomodate no.of requests per second
 
 Buy a server which is same configuration of existing one and add it to the cluster of servers
 
+-> Need loadbalancer
+-> Network class (which are slower)
+-> Logging is difficult
+
+
 b) Vertical scaling
 
 Increasing the CPU power i.e ram and memmory to accomodate no.of requests per second
@@ -38,7 +43,7 @@ Vertical scaling is costly,
 In Horizontal scaling if we have 10 servers which are handling 10M requests per second, assume in the following months if the requests go down to 100K we can remove few servers
 from the cluster (sell them or put a side).
 
-
-
-
+-> Single point of failure
+-> Inter process communication which is faster
+-> Hardware limit
 
