@@ -25,3 +25,27 @@ How a LB identifies fault tolerance in a server ?
 
 Load Balancing Algorithms:
 
+Below are the two different approaches to distribute network traffic across multiple servers.
+
+1) Dynamic load balancing Algorithms:
+Here LB, Monitors the real-time health and performace of the servers in the pool  and make decisions about where to network send traffic based on this information.
+These alorithms are considered complex, but have better fault tolerance and overall performance.
+Can adapt to changes in the load on the servers
+Ex: Dynamic Round Robin, Lease Connection, Weighted Response Time
+
+
+2) Static Load Balancing Algorithms:
+These algorithms do not consider the current state of the servers. These algos take decisions besed on pre-configured information such as no.of servers in the pool.
+Very Simple and very efficient in case of fairly regular tasks
+Cannot Adapt to the changes in the load on the server.
+Ex: Round Robin, Consistent Hashing, Weighted Round Robin
+
+
+Lets Discuss some algos:
+
+1) Consistent Hashing
+2) Round Robin
+3) Weighted Round Robin
+4) Least Connection Algorithm
+5) Weighted Lease Connection Algorithm
+
